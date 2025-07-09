@@ -1,0 +1,171 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: #fff;
+}
+
+.main-content {
+  width: 1280px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 625px;
+}
+
+.main-content {
+  &--frame {
+    background-color: yellow;
+  }
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  padding: 1rem;
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+.side-menu.active {
+  right: 0;
+}
+
+// Hamburger menu
+.hamburger-btn {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease;
+
+  span {
+    width: 24px;
+    height: 3px;
+    background-color: #222;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+//Top social icons
+.social-top {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background-color: #fcaebf; // różowy
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f98fa7;
+  }
+}
+
+// Arrow top
+.arrow-top {
+  position: absolute;
+  top: -30px;
+  right: -45px;
+  width: 100px;
+  opacity: .8;
+}
+
+//Logo area
+.logo-area {
+  img {
+    width: 480px;
+  }
+}
+
+// Navigations frame
+.navigation-box {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 12px 20px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  width: fit-content;
+}
+
+.navigation-box {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.nav-button .label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+  margin-top: 4px;
+}
+
+.circle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.circle-btn--pink {
+  background-color: #fcaebf;
+}
+
+.circle-btn--red {
+  background-color: #e53939;
+}
+
+.circle-btn:hover {
+  opacity: 0.85;
+}
+
+// Footer 
+footer a {
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+// Footer social icons
+.fotter-social-icons {
+  a {
+    font-size: 24px;
+    margin: 0 20px;
+  }
+}
