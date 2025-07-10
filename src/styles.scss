@@ -1,5 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
+$red: #e53939;
+
 body {
   background-color: #fff;
 }
@@ -14,11 +16,10 @@ body {
 }
 
 .main-content {
-  &--frame {
-
-  }
+  &--frame {}
 }
 
+//Side menu 
 .side-menu {
   position: fixed;
   top: 0;
@@ -26,15 +27,32 @@ body {
   width: 250px;
   height: 100%;
   background: #fff;
-  border-left: 1px solid #ccc;
+  /* border-left: 1px solid #ccc; */
   padding: 1rem;
   transition: right 0.3s ease;
   z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  ul {
+    li {
+      a {
+        color: $red;
+        padding: 15px 0;
+        display: block;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+        font-weight: 600;
+      }
+    }
+  }
 }
 
 .side-menu.active {
   right: 0;
 }
+
+
+
 
 // Hamburger menu
 .hamburger-btn {
