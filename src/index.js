@@ -1,10 +1,16 @@
 import './styles.scss';
 import 'bootstrap';
 
-document.getElementById('menuToggle').addEventListener('click', () => {
-  document.getElementById('sideMenu').classList.add('active');
+const sideMenu = document.getElementById('sideMenu');
+const menuToggle = document.getElementById('menuToggle');
+const menuClose = document.getElementById('menuClose');
+
+menuToggle.addEventListener('click', () => {
+  sideMenu.classList.toggle('active');
+  menuToggle.classList.toggle('active'); // <- to dodaje animację do "X"
 });
 
-document.getElementById('menuClose').addEventListener('click', () => {
-  document.getElementById('sideMenu').classList.remove('active');
+menuClose.addEventListener('click', () => {
+  sideMenu.classList.remove('active');
+  menuToggle.classList.remove('active'); // <- wraca do hamburgera
 });
