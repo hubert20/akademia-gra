@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  
+
   <header class="container d-flex justify-content-between align-items-center">
     <div class="logo-area d-flex align-items-center gap-3">
       <img src="./assets/tkmax-ap-logo.png" alt="Logo Akademia" />
@@ -59,26 +59,38 @@
   <main class="main-content mt-4">
     <div class="main-content--frame position-relative w-100 h-100 d-flex align-items-center justify-content-center">
 
-      <!-- Task game -->
-      <img src="./assets/przygodnik.jpg" alt="" class="mx-auto" />
-      <!-- End Task game -->
+      <!-- Task game wrapper -->
+      <div id="task-container" class="task-wrapper w-100 text-center">
+        <!-- zadanie będzie ładowane dynamicznie -->
+      </div>
+      <!-- End Task game wrapper -->
 
       <!-- Navigation-->
       <div class="navigation-box d-flex align-items-center justify-content-between">
         <div class="nav-button text-center">
-          <button class="circle-btn circle-btn--pink">
+          <button class="circle-btn circle-btn--red" id="prevBtn">
             <i class="fas fa-chevron-left"></i>
           </button>
           <div class="label">WSTECZ</div>
         </div>
-        <div class="nav-button text-center">
-          <button class="circle-btn circle-btn--red">
+
+        <!-- Środkowy przycisk START -->
+        <div class="nav-button text-center" id="startBtnWrapper">
+          <button class="circle-btn circle-btn--red" id="startGame">
+            <i class="fas fa-play"></i>
+          </button>
+          <div class="label">START</div>
+        </div>
+
+        <div class="nav-button text-center" id="nextBtnWrapper">
+          <button class="circle-btn circle-btn--red" id="nextBtn">
             <i class="fas fa-chevron-right"></i>
           </button>
           <div class="label">DALEJ</div>
         </div>
       </div>
       <!-- End Navigation-->
+
 
     </div>
   </main>
@@ -87,27 +99,33 @@
   <footer class="container my-5 d-flex justify-content-between">
 
     <div class="mb-3">
-      <a href="https://www.wiosna.org.pl/polityka-prywatnosci/" target="_blank" rel="noopener noreferrer">Polityka prywatności</a> |
+      <a href="https://www.wiosna.org.pl/polityka-prywatnosci/" target="_blank" rel="noopener noreferrer">Polityka
+        prywatności</a> |
       <a href="https://www.wiosna.org.pl/regulamin-serwisu/" target="_blank" rel="noopener noreferrer">Regulamin</a>
     </div>
 
     <div class="fotter-social-icons">
-      <a href="https://www.facebook.com/akademia.przyszlosci" class="" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <a href="https://www.facebook.com/akademia.przyszlosci" class="" target="_blank" rel="noopener noreferrer"
+        aria-label="Facebook">
         <i class="fab fa-facebook-f"></i>
       </a>
-      <a href="https://www.instagram.com/akademiaprzyszlosci/?hl=pl" class="" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <a href="https://www.instagram.com/akademiaprzyszlosci/?hl=pl" class="" target="_blank" rel="noopener noreferrer"
+        aria-label="Instagram">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="https://www.tiktok.com/@akademiaprzyszlosci_" class="" target="_blank" rel="noopener noreferrer" aria-label="Tiktok">
+      <a href="https://www.tiktok.com/@akademiaprzyszlosci_" class="" target="_blank" rel="noopener noreferrer"
+        aria-label="Tiktok">
         <i class="fab fa-tiktok"></i>
       </a>
       <a href="https://x.com" class="" target="_blank" rel="noopener noreferrer" aria-label="X">
         <i class="fab fa-x-twitter"></i>
       </a>
-      <a href="https://www.youtube.com/user/TVakademii" class="" target="_blank" rel="noopener noreferrer" aria-label="Youtube">
+      <a href="https://www.youtube.com/user/TVakademii" class="" target="_blank" rel="noopener noreferrer"
+        aria-label="Youtube">
         <i class="fab fa-youtube"></i>
       </a>
-      <a href="https://www.linkedin.com/showcase/akademia-przyszłości/" class="" target="_blank" rel="noopener noreferrer" aria-label="Linkedin">
+      <a href="https://www.linkedin.com/showcase/akademia-przyszłości/" class="" target="_blank"
+        rel="noopener noreferrer" aria-label="Linkedin">
         <i class="fab fa-linkedin"></i>
       </a>
     </div>
