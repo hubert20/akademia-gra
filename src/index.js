@@ -16,6 +16,8 @@ const prevNav = document.getElementById('prevBtnWrapper');
 let currentView = -1; // -1 to intro
 let isTaskCompleted = false;
 
+import introImage from './assets/przygodnik.jpg';
+
 // MENU toggle
 menuToggle.addEventListener('click', () => {
   sideMenu.classList.toggle('active');
@@ -58,9 +60,7 @@ function renderView(index) {
   if (index === -1) {
     taskContainer.innerHTML = `
       <div class="intro-screen text-center">
-        <h2>Witamy w grze edukacyjnej!</h2>
-        <p>Rozwiązuj zadania, ucz się i baw się dobrze 🎯</p>
-        <img src="./assets/przygodnik.jpg" alt="Intro" style="max-width: 100%; height: auto; margin-bottom: 2rem;" />
+        <img src="${introImage}" alt="Intro" style="max-width: 100%; height: auto; margin-bottom: 2rem;" />
       </div>
     `;
 
