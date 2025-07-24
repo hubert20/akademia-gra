@@ -9,14 +9,14 @@ const taskContainer = document.getElementById('task-container');
 
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
-const nextNav = document.getElementById('nextBtnWrapper');
-const prevNav = prevBtn.parentElement;
 const startNav = document.getElementById('startBtnWrapper');
+const nextNav = document.getElementById('nextBtnWrapper');
+const prevNav = document.getElementById('prevBtnWrapper');
 
-let currentView = -1; // intro
+let currentView = -1; // -1 to intro
 let isTaskCompleted = false;
 
-// toggle menu
+// MENU toggle
 menuToggle.addEventListener('click', () => {
   sideMenu.classList.toggle('active');
   menuToggle.classList.toggle('active');
@@ -27,7 +27,7 @@ menuClose.addEventListener('click', () => {
   menuToggle.classList.remove('active');
 });
 
-// nawigacja
+// NAWIGACJA
 nextBtn.addEventListener('click', () => {
   if (currentView < views.length - 1 && isTaskCompleted) {
     currentView++;
@@ -42,23 +42,18 @@ prevBtn.addEventListener('click', () => {
   }
 });
 
-// kontrola przycisków
+// KONTROLA PRZYCISKÓW
 function updateNavigationButtons() {
-  if (currentView === -1) {
-    startNav.style.display = 'inline-block';
-    prevNav.style.display = 'none';
-    nextNav.style.display = 'none';
-  } else {
-    startNav.style.display = 'none';
-    prevNav.style.display = currentView > 0 ? 'inline-block' : 'none';
-    nextNav.style.display = 'inline-block';
+  startNav.style.display = currentView === -1 ? 'inline-block' : 'none';
+  prevNav.style.display = currentView > 0 ? 'inline-block' : 'none';
+  nextNav.style.display = currentView >= 0 ? 'inline-block' : 'none';
 
-    nextBtn.disabled = !isTaskCompleted;
-    nextBtn.classList.toggle('disabled', !isTaskCompleted);
-  }
+  // blokuj „dalej” jeśli nie zakończono zadania
+  nextBtn.disabled = !isTaskCompleted;
+  nextBtn.classList.toggle('disabled', !isTaskCompleted);
 }
 
-// render widoku
+// RENDER WIDOKU
 function renderView(index) {
   if (index === -1) {
     taskContainer.innerHTML = `
@@ -71,21 +66,22 @@ function renderView(index) {
 
     updateNavigationButtons();
 
-    // podłącz przycisk start (jest w HTML w nawigacji)
-    document.getElementById('startGame').addEventListener('click', () => {
-      currentView = 0;
-      renderView(currentView);
-    });
+    const startGameBtn = document.getElementById('startGame');
+    if (startGameBtn) {
+      startGameBtn.addEventListener('click', () => {
+        currentView = 0;
+        renderView(currentView);
+      });
+    }
 
     return;
   }
 
-  // renderuj zadanie
+  // ładowanie zadania
   taskContainer.innerHTML = views[index];
   isTaskCompleted = false;
   updateNavigationButtons();
 
-  // jeśli widok ma logikę – uruchom ją i przekaż funkcję "onSuccess"
   if (typeof logics[index] === 'function') {
     logics[index](() => {
       isTaskCompleted = true;
@@ -94,5 +90,5 @@ function renderView(index) {
   }
 }
 
-// odpal intro na start
+// START
 renderView(currentView);
