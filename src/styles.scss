@@ -261,3 +261,87 @@ footer a {
     margin: 0 20px;
   }
 }
+
+// Task 1
+.emotion-option {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emotion-cloud {
+  width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.emotion-cloud.active {
+  animation: shake 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-3deg) scale(1.3);
+  }
+
+  100% {
+    transform: rotate(3deg) scale(1.3);
+  }
+}
+
+
+.btn-emotion {
+  width: 130px;
+  font-weight: bold;
+}
+
+.btn-emotion--good {
+  background-color: #00e6e6;
+  color: #000;
+}
+
+.btn-emotion--ok {
+  background-color: #00bfff;
+  color: #000;
+}
+
+.btn-emotion--bad {
+  background-color: #ff9999;
+  color: #000;
+}
+
+.btn-emotion--depends {
+  background-color: #ccc;
+  color: #000;
+}
+
+.emotion-desc {
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 2px solid transparent;
+}
+
+.label--good {
+  background-color: #ccf9f9;
+  border-color: #00e6e6;
+}
+
+.label--ok {
+  background-color: #cceeff;
+  border-color: #00bfff;
+}
+
+.label--bad {
+  background-color: #ffe6e6;
+  border-color: #ff9999;
+}
+
+.label--depends {
+  background-color: #eeeeee;
+  border-color: #ccc;
+}
