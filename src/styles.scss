@@ -502,3 +502,68 @@ footer a {
   width: 200px;
   height: 200px;
 }
+
+//task6
+.assertive-task {
+  padding: 2rem 0;
+}
+
+.question-box {
+  //background-color: #fefef7;
+  border-radius: 1rem;
+  padding: 2rem;
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  background: url('./assets/task6/dymek-main.png') center/100% no-repeat;
+}
+
+.options-wrapper .option-btn {
+  border: 2px solid #90caf9;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 1rem;
+  font-size: 20px;
+  border-radius: 8px;
+  width: 100%;
+  line-height: 1.2;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.option-btn.btn-success {
+  background-color: #c8e6c9;
+  border-color: #66bb6a;
+  color: #1b5e20;
+}
+
+.option-btn.btn-danger {
+  background-color: #ffcdd2;
+  border-color: #ef5350;
+  color: #b71c1c;
+}
+
+.character-img {
+  max-height: 260px;
+}
+
+.feedback-box {
+  background-color: #fff3f3;
+  border: 2px solid #ef5350;
+  border-radius: 10px;
+  padding: 1rem;
+  font-size: 0.95rem;
+  color: #b71c1c;
+  position: relative;
+}
+
+.feedback-box::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-right: 20px solid #ef5350;
+  border-bottom: 20px solid transparent;
+}
+

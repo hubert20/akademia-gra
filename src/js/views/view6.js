@@ -2,93 +2,112 @@
 
 import characterNeutral from '../../assets/task6/character-neutral.png';
 import characterHappy from '../../assets/task6/character-happy.png';
-import characterNeutralBubble from '../../assets/task6/character-neutral-bubble.png'; // opcjonalnie inna grafika z dymkiem
+import characterNeutralBubble from '../../assets/task6/character-neutral-bubble.png';
+
+import iconExit from '../../assets/task6/icon-exit.png';
+import iconInfo from '../../assets/task6/ikonka-info.png';
+import iconFlaga from '../../assets/task6/ikonka-flaga.png';
+
+import dymekAlert from '../../assets/task6/dymek-alert.png';
+import dymekMain from '../../assets/task6/dymek-main.png';
+
 
 export const view = `
-  <div class="multi-quiz-task text-center">
-    <div class="info-box mb-4">
-      <strong>Ciekawostka:</strong> 
-      Asertywność to umiejętność mówienia tego, co naprawdę myślimy i czujemy – z szacunkiem do siebie i innych. 
-      Nie chodzi o bycie miłym za wszelką cenę – ale o to, by stawiać granice i dbać o siebie.
-    </div>
-
-    <h4 class="mb-4"><i class="bi bi-flag"></i> Które zdania są asertywne?</h4>
-
-    <div id="quiz-options" class="d-flex flex-column gap-3 align-items-center">
-      <button class="quiz-option btn btn-outline-primary" data-correct="true">
-        Nie muszę mieć ochoty robić tego co robią inni.
-      </button>
-      <button class="quiz-option btn btn-outline-primary" data-correct="false" data-feedback="Jeśli Twój najlepszy przyjaciel jest Twoim prawdziwym przyjacielem, zgodność waszych opinii nie będzie miała znaczenia ani wpływu na waszą przyjaźń. Nie bój się mieć własnego zdania! Jest ono równie wartościowe co innych! Spróbuj jeszcze raz!">
-        Zawsze muszę zgodzić się z tym co sądzi mój najlepszy przyjaciel.
-      </button>
-      <button class="quiz-option btn btn-outline-primary" data-correct="true">
-        Mogę nie zgodzić się z opinią moich bliskich.
-      </button>
-      <button class="quiz-option btn btn-outline-primary" data-correct="false" data-feedback="Twoje zdanie jest zawsze równie ważne co zdanie innych! Spróbuj jeszcze raz!">
-        Moje zdanie jest mniej ważne od zdania innych.
-      </button>
-      <button class="quiz-option btn btn-outline-primary" data-correct="true">
-        Zawsze mogę powiedzieć nie.
-      </button>
-      <button class="quiz-option btn btn-outline-primary" data-correct="false" data-feedback="Osoby wokół Ciebie powinny lubić i akceptować Cię, niezależnie czy się z nimi zgadzasz czy nie. Twoje potrzeby są bardzo ważne - nie bój się ich wyrażać, nawet jeśli są różne od potrzeb innych osób. Spróbuj jeszcze raz!">
-        Warto ulegać innym, po to żeby mnie lubili.
-      </button>
-    </div>
-
-    <div id="feedback" class="mt-4 text-danger fw-bold"></div>
-
-    <div class="character mt-4">
-      <img id="character-img" src="https://via.placeholder.com/150x150?text=Postać" alt="Postać" />
+<div class="fact-info d-flex gap-4 p-3 mt-4" style="background: #E3F5FA;border-radius: 1rem;">
+<div class="fact-info__left" style="position: relative;top: -20px;">
+  <img src="${iconInfo}" alt="Postać"  class="" style="" />
+  <p class="mb-0" style="color: #006FCC;font-weight: bold;font-size: 20px;">Ciekawostka</p>
+</div>
+<div class="p-3 text-start" style="font-size: 20px;color: #006FCC;line-height: 1.2;">
+   Asertywność to umiejętność mówienia tego, co naprawdę myślimy i czujemy - z szacunkiem do siebie i innych. 
+ Nie chodzi o bycie miłym za wszelką cenę - ale o to, by stawiać granice i dbać o siebie.
+</div>
+</div>
+  <div class="assertive-task">
+    <div class="row gx-5 gy-4 align-items-start">
+      <div class="col-md-3 text-center">
+        <img src="${characterNeutral}" alt="Postać" id="character" class="character-img" style="max-height: 260px;" />
+      </div>
+      <div class="col-md-9">
+        <div class="question-box p-4">
+          <div class="question-header mb-3 d-flex align-items-center justify-content-center gap-2">
+            <img src="${iconFlaga}" alt="Ikona flagi" style="height: 28px;" />
+            <h4 class="m-0">Które zdania są asertywne?</h4>
+          </div>
+         <div class="px-5 pb-5">
+          <div class="options-wrapper row g-1 justify-content-center">
+           <div class="col-5 pe-3 pb-3">
+             <button class="option-btn" data-id="1">„Nie muszę mieć ochoty robić tego co robią inni.”</button>
+            </div>
+            <div class="col-5 pb-3">
+             <button class="option-btn" data-id="2">„Zawsze muszę zgodzić się z tym co sądzi mój najlepszy przyjaciel.”</button>
+            </div>
+            <div class="col-5 pe-3">
+             <button class="option-btn" data-id="3">„Mogę nie zgodzić się z opinią moich bliskich.”</button>
+            </div>
+            <div class="col-5">
+             <button class="option-btn" data-id="4">„Moje zdanie jest mniej ważne od zdania innych.”</button>
+            </div>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-lg-9">
+           <div id="feedback" class="alert alert-danger d-none">
+            <p class="m-0" id="feedbackText"></p>
+          </div>
+         </div>
+         </div>
+        </div>
+      </div>
     </div>
   </div>
 `;
 
 export const logicFunc = (onSuccess) => {
-  const options = document.querySelectorAll('.quiz-option');
-  const feedbackBox = document.getElementById('feedback');
-  const character = document.getElementById('character-img');
-
-  const correctAnswers = [...options].filter(opt => opt.dataset.correct === 'true');
-
-  const checkAnswers = () => {
-    const selectedCorrect = [...options].filter(opt => 
-      opt.classList.contains('selected') && opt.dataset.correct === 'true'
-    );
-    const selectedIncorrect = [...options].filter(opt => 
-      opt.classList.contains('selected') && opt.dataset.correct === 'false'
-    );
-
-    if (selectedCorrect.length === correctAnswers.length && selectedIncorrect.length === 0) {
-      // Wszystkie poprawne i żadnych błędnych
-      showSuccess();
-      onSuccess(); // ✅ aktywacja przycisku DALEJ
-    } else {
-      showError(selectedIncorrect);
-    }
+  const correctAnswers = ['1', '3'];
+  const feedbackMessages = {
+    '2': 'Jeśli Twój najlepszy przyjaciel jest Twoim prawdziwym przyjacielem, zgodność waszych opinii nie będzie miała znaczenia ani wpływu na waszą przyjaźń. Nie bój się mieć własnego zdania! Jest ono równie wartościowe co innych! Spróbuj jeszcze raz!',
+    '4': 'Twoje zdanie jest zawsze równie ważne co zdanie innych! Spróbuj jeszcze raz!',
   };
 
-  const showSuccess = () => {
-    feedbackBox.textContent = 'Brawo! Rozpoznałeś asertywne wypowiedzi.';
-    feedbackBox.classList.remove('text-danger');
-    feedbackBox.classList.add('text-success');
-    character.src = 'https://via.placeholder.com/150x150?text=😊'; // ← zamień na grafikę postaci pozytywnej
-  };
+  const selected = new Set();
+  const buttons = document.querySelectorAll('.option-btn');
+  const feedback = document.getElementById('feedback');
+  const feedbackText = document.getElementById('feedbackText');
+  const character = document.getElementById('character');
 
-  const showError = (wrongOptions) => {
-    const firstWrong = wrongOptions[0];
-    const message = firstWrong?.dataset.feedback || 'Spróbuj jeszcze raz!';
-    feedbackBox.textContent = message;
-    feedbackBox.classList.remove('text-success');
-    feedbackBox.classList.add('text-danger');
-    character.src = 'https://via.placeholder.com/150x150?text=😐'; // ← zamień na grafikę neutralną
-  };
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
 
-  options.forEach(option => {
-    option.addEventListener('click', () => {
-      option.classList.toggle('selected');
-      option.classList.toggle('btn-outline-primary');
-      option.classList.toggle('btn-success');
-      checkAnswers();
+      if (selected.has(id)) {
+        selected.delete(id);
+        btn.classList.remove('btn-success', 'btn-danger');
+        character.src = characterNeutral;
+        feedback.classList.add('d-none');
+        return;
+      }
+
+      selected.add(id);
+      btn.classList.remove('btn-success', 'btn-danger');
+
+      if (correctAnswers.includes(id)) {
+        btn.classList.add('btn-success');
+        character.src = characterHappy;
+        feedback.classList.add('d-none');
+      } else {
+        btn.classList.add('btn-danger');
+        character.src = characterNeutralBubble;
+        feedbackText.innerText = feedbackMessages[id] || '';
+        feedback.classList.remove('d-none');
+      }
+
+      const correctSelected = correctAnswers.every(ans => selected.has(ans));
+      if (correctSelected) {
+        onSuccess();
+        character.src = characterHappy;
+        feedback.classList.add('d-none');
+      }
     });
   });
 };

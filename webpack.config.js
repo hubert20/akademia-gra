@@ -18,7 +18,17 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,   // bo poniżej jest sass-loader
+              esModule: false     // <<< kluczowe, usuwa problem z URL_REPLACEMENT
+            }
+          },
+          'sass-loader'
+        ]
       },
       {
         test: /\.js$/,
@@ -26,8 +36,9 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
-        type: 'asset/resource'
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset/resource',
+        generator: { filename: 'assets/[name][hash][ext][query]' }
       }
     ]
   },
@@ -37,7 +48,7 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html'
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({ filename: 'styles.[contenthash].css' })
   ],
   devServer: {
     static: './dist',
