@@ -7,6 +7,8 @@ import { view as view5, logicFunc as logic5 } from './views/view5.js';
 import { view as view6, logicFunc as logic6 } from './views/view6.js';
 import { view as view7, logicFunc as logic7 } from './views/view7.js';
 import { view as view8, logicFunc as logic8 } from './views/view8.js';
+import { view as view9, logicFunc as logic9 } from './views/view9.js';
+import { view as view10, logicFunc as logic10 } from './views/view10.js';
 
-export const views = [view0, view1, view2, view3, view4, view5, view6, view7, view8];
-export const logics = [logic0, logic1, logic2, logic3, logic4, logic5, logic6, logic7, logic8];
+export const views = [view0, view1, view2, view3, view4, view5, view6, view7, view8, view9, view10];
+export const logics = [logic0, logic1, logic2, logic3, logic4, logic5, logic6, logic7, logic8, logic9, logic10];
