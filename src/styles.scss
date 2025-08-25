@@ -214,11 +214,11 @@ body {
 }
 
 //Logo area
-.logo-area {
-  img {
-    width: 480px;
-  }
-}
+// .logo-area {
+//   img {
+//     width: 480px;
+//   }
+// }
 
 // Navigations frame
 .navigation-box {
@@ -648,13 +648,25 @@ footer a {
 
 /* --------- ANIMOWANY TEKST --------- */
 .intro-text {
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
   font-size: 1.25rem;
   line-height: 1.6;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   text-align: center;
+
+  p {
+    font-size: 24px;
+    color: #779FAA;
+    margin-bottom: 0px;
+    text-align: left;
+  }
+
+  p:first-of-type {
+    font-size: 26px;
+    color: #2D2D2D;
+  }
 }
 
 .intro-text.show {
@@ -683,7 +695,7 @@ footer a {
   position: relative;
   width: 325px;
   height: 447px;
-  margin: 40px auto;
+  margin: 20px auto;
   background: url('./assets/task7/kapsula.png') no-repeat center center;
   background-size: contain;
   border: 2px dashed #f7f7f7;
@@ -719,8 +731,8 @@ footer a {
 
 /* Pozycje absolutne (dostosuj wg potrzeb) */
 .item-teddy {
-  left: 140px;
-  top: 50px;
+  left: 100px;
+  top: 120px;
 }
 
 .item-headphones {
@@ -735,7 +747,7 @@ footer a {
 
 .item-book {
   right: 260px;
-  top: 80px;
+  top: 120px;
 }
 
 .item-other {
@@ -778,4 +790,130 @@ footer a {
 
 #capsule-container .item-dropped img {
   max-width: 80px;
+}
+
+.capsule-task-text-1 {
+  font-size: 26px;
+  color: #2D2D2D;
+  text-align: left;
+}
+
+.capsule-task-text-2 {
+  font-size: 24px;
+  color: #779FAA;
+  text-align: left;
+}
+
+// task8
+
+/* Kontener całego zadania */
+.view11-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* Tytuły i opisy */
+.view11-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.view11-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+/* Kontener na wszystkie karty */
+.cards-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Flip card kontener z perspektywą */
+.flip-card {
+  width: 160px;
+  height: 240px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Po kliknięciu obrót */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Przód i tył karty */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  background-color: #e3f6f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Front z grafiką i pytajnikiem */
+.flip-card-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Tył z komentarzem */
+.flip-card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  font-size: 0.9rem;
+  background-color: #fffbea;
+  text-align: left;
+}
+
+/* Tekst pogrubiony */
+.flip-card-back b {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Przycisk "Wybierz" */
+.flip-card-back button {
+  align-self: flex-end;
+  margin-top: auto;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #ef476f;
+  color: white;
+  cursor: pointer;
+}
+
+/* Blokuj kliknięcia pozostałych kart */
+.card-disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  transition: opacity 0.3s;
 }

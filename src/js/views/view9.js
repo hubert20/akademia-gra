@@ -12,7 +12,11 @@ export const view = `
     <div id="intro-text" class="intro-text mb-4"></div>
     <button id="start-capsule" class="btn btn-primary mt-4">Przejdź dalej</button>
 
-    <div id="capsule-task" class="d-none mt-5 position-relative">
+    <div id="capsule-task" class="d-none position-relative">
+
+    <p class="capsule-task-text-1 mb-0">Co pomaga Ci poczuć się lepiej, gdy coś Cię stresuje?</p>
+    <p class="capsule-task-text-2 mb-0">Przeciągnij do swojej kapsuły wybrane elementy, które mogą dawać Ci wsparcie: </p>
+
       <div id="drop-zone">
         <div id="capsule-container"></div>
       </div>
