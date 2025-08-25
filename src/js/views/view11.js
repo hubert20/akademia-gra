@@ -1,52 +1,94 @@
-// view11.js – wybierz jedną z trzech kart i odkryj konsekwencje wyboru
+// view11.js
 
-import rozmowaFront from '../../assets/task9/opcja.png';
-import rozmowaBack from '../../assets/task9/Rozmowa z potworem.png';
-import ucieczkaFront from '../../assets/task9/opcja.png';
-import ucieczkaBack from '../../assets/task9/Ucieczka z miejsca zdarzenia .png';
-import pomocFront from '../../assets/task9/opcja.png';
-import pomocBack from '../../assets/task9/Pojscie po pomoc doroslych.png';
+import frontImage from '../../assets/task9/opcja.png';
+import rozmowaImage from '../../assets/task9/rozmowa-z-potworem.png';
+import ucieczkaImage from '../../assets/task9/ucieczka-z-miejsca-zdarzenia.png';
+import pomocImage from '../../assets/task9/pojscie-po-pomoc-doroslych.png';
 
 export const view = `
-  <div class="task11-container">
+  <div class="task11">
     <div class="task11-header">
       <h2>Uratuj Alex!</h2>
-      <p>Alex została zaatakowana przez potwora. Rzucanie patykami tylko go rozwścieczyło. To nie pomogło.<br>Co innego mogłyby zrobić inne dzieci, żeby uratować Alex?</p>
+      <p>
+        Alex została zaatakowana przez potwora. Rzucanie patykami tylko go rozwścieczyło. To nie pomogło.<br>
+        Co innego mogłyby zrobić inne dzieci, żeby uratować Alex?
+      </p>
+      <h3>Wybierz spośród pokazanych 3 opcji:</h3>
     </div>
 
-    <h3>Wybierz spośród pokazanych 3 opcji:</h3>
     <div class="cards">
       <div class="card" data-id="rozmowa">
-        <img class="card-front" src="${rozmowaFront}" alt="Rozmowa z potworem">
-        <img class="card-back d-none" src="${rozmowaBack}" alt="Opis - rozmowa">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="${frontImage}" alt="Rozmowa z potworem" />
+            <p>Rozmowa z potworem</p>
+          </div>
+          <div class="card-back">
+            <img src="${rozmowaImage}" alt="Rozmowa z potworem - back" />
+          </div>
+        </div>
       </div>
+
       <div class="card" data-id="ucieczka">
-        <img class="card-front" src="${ucieczkaFront}" alt="Ucieczka z miejsca zdarzenia">
-        <img class="card-back d-none" src="${ucieczkaBack}" alt="Opis - ucieczka">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="${frontImage}" alt="Ucieczka z miejsca zdarzenia" />
+            <p>Ucieczka z miejsca zdarzenia</p>
+          </div>
+          <div class="card-back">
+            <img src="${ucieczkaImage}" alt="Ucieczka - back" />
+          </div>
+        </div>
       </div>
+
       <div class="card" data-id="pomoc">
-        <img class="card-front" src="${pomocFront}" alt="Pójście po pomoc dorosłych">
-        <img class="card-back d-none" src="${pomocBack}" alt="Opis - pomoc dorosłych">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="${frontImage}" alt="Pójście po pomoc dorosłych" />
+            <p>Pójście po pomoc dorosłych</p>
+          </div>
+          <div class="card-back">
+            <img src="${pomocImage}" alt="Pomoc dorosłych - back" />
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="comment-box" id="commentBox"></div>
   </div>
 `;
 
 export const logicFunc = (onSuccess) => {
   const cards = document.querySelectorAll('.card');
+  const commentBox = document.getElementById('commentBox');
+
+  const comments = {
+    rozmowa: `<strong>To bardzo odważny krok.</strong> Rozmowa może pomóc rozwiązać problem. 
+    Być może potwór wcale nie chciał nikogo skrzywdzić? Pamiętaj jednak, że w sytuacji zagrożenia 
+    nie wiemy jakie druga strona ma zamiary wobec nas. W takiej sytuacji warto mieć przy sobie 
+    drugą osobę, najlepiej dorosłą, która pomoże nam stawić czoła potworowi, zapewniając przy tym bezpieczeństwo.`,
+
+    ucieczka: `<strong>Czasami ucieczka to najlepszy sposób na ratunek.</strong> Gdy jesteś z dala od potwora 
+    - możesz czuć się bezpiecznie. Jednak uciekając od niego, w Twojej głowie - lęk może wciąż tam być i 
+    bardzo Ci przeszkadzać. Uciekając rozwiążesz problem na chwilę, ale czy dzięki temu przestaniesz 
+    obawiać się potwora? Zastanów się, czy uciekając czujesz się już całkowicie bezpiecznie.`,
+
+    pomoc: `<strong>To bardzo bezpieczne rozwiązanie!</strong> Z pomocą osoby dorosłej na pewno łatwiej będzie 
+    stawić czoła wszystkim obawom. Razem możecie dobrze przemyśleć, jak poradzić sobie z potworem. 
+    Zawsze warto poprosić o pomoc – to również oznaka naszej siły i odwagi.`
+  };
 
   cards.forEach(card => {
     card.addEventListener('click', () => {
-      // Zablokuj wybory po kliknięciu jednej karty
+      if (document.querySelector('.card.flipped')) return; // tylko jedna karta
+
+      card.classList.add('flipped');
       cards.forEach(c => c.classList.add('disabled'));
 
-      const front = card.querySelector('.card-front');
-      const back = card.querySelector('.card-back');
+      const id = card.dataset.id;
+      commentBox.innerHTML = `<div class="comment">${comments[id]}</div>`;
 
-      front.classList.add('d-none');
-      back.classList.remove('d-none');
-
-      onSuccess();
+      if (onSuccess) onSuccess();
     });
   });
 };
