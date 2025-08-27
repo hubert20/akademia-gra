@@ -1,129 +1,85 @@
-// src/js/views/view1.js
-
-import twarz from '../../assets/task2/twarz.png';
-import oczySmutne from '../../assets/task2/oczy-smutne.png';
-import oczyZle from '../../assets/task2/oczy-zle.png';
-import oczyWesole from '../../assets/task2/oczy-wesole.png';
-import ustaSmutne from '../../assets/task2/usta-smutne.png';
-import ustaWesole from '../../assets/task2/usta-wesole.png';
-import ustaZle from '../../assets/task2/usta-zle.png';
-import brwiSmutne from '../../assets/task2/brwi-smutne.png';
-import brwiZle from '../../assets/task2/brwi-zle.png';
-import brwiWesole from '../../assets/task2/brwi-wesole.png';
-
+// src/js/views/view1.js - Zadanie 1 - Dopasuj kawałki i odkryj emocję na twarzy
+import chmurkaGood from '../../assets/chmurka-good.jpg';
+import chmurkaOk from '../../assets/chmurka-ok.jpg';
+import chmurkaBad from '../../assets/chmurka-bad.jpg';
+import chmurkaDepends from '../../assets/chmurka-depends.jpg';
 export const view = `
-  <div class="face-builder h-100">
-    <div class="face-left p-4">
-      <p class="standard-title-3 text-start">Przeciągaj elementy i dopasuj je tak, aby stworzyć postać,<br>która wygląda na <strong>smutną</strong>.</p>
-
-    <div class="d-flex align-items-center justify-content-evenly">
-      <div class="face-image-wrapper">
-        <img src="${twarz}" alt="Twarz" class="face-base">
-        <div class="drop-zone eyes-drop" data-zone="eyes"></div>
-        <div class="drop-zone mouth-drop" data-zone="mouth"></div>
-        <div class="drop-zone brows-drop" data-zone="brows"></div>
+  <div class="emotion-task text-center">
+    <h2>Jak się czujesz w swojej klasie?</h2>
+    <p class="text-muted mb-5">Wybierz klikając w chmurkę lub przycisk</p>
+    <div class="emotions-wrapper d-flex justify-content-center flex-wrap gap-5">
+      <div class="emotion-option" data-type="good">
+        <img src="${chmurkaGood}" alt="Spokojnie" class="emotion-cloud mb-4" />
+        <button class="btn btn-emotion btn-emotion--good">DOBRZE</button>
       </div>
-
-    <div>
-      <div class="drag-options">
-        <div class="option-group" data-type="eyes">
-          <p class="mb-0">Wybierz oczy</p>
-          <div class="option-images p-3">
-           <img src="${oczyZle}" draggable="true" data-id="oczy-zle" />
-           <img src="${oczySmutne}" draggable="true" data-id="oczy-smutne" data-sad="true"/>
-           <img src="${oczyWesole}" draggable="true" data-id="oczy-wesole" />
-          </div>
-        </div>
-        <div class="option-group" data-type="mouth">
-          <p class="mb-0">Wybierz usta</p>
-        <div class="option-images p-3">
-          <img src="${ustaZle}" draggable="true" data-id="usta-zle" />
-          <img src="${ustaSmutne}" draggable="true" data-id="usta-smutne" />
-          <img src="${ustaWesole}" draggable="true" data-id="usta-wesole" />
-        </div>
-        </div>
-        <div class="option-group" data-type="brows">
-          <p class="mb-0">Wybierz brwi</p>
-          <div class="option-images p-3">
-          <img src="${brwiZle}" draggable="true" data-id="brwi-zle" />
-          <img src="${brwiSmutne}" draggable="true" data-id="brwi-smutne" />
-          <img src="${brwiWesole}" draggable="true" data-id="brwi-wesole" />
-          </div>
-        </div>
+      <div class="emotion-option" data-type="ok">
+        <img src="${chmurkaOk}" alt="Tak sobie" class="emotion-cloud mb-4" />
+        <button class="btn btn-emotion btn-emotion--ok">TAK SOBIE</button>
       </div>
-      <button class="btn btn-secondary mt-3" id="accept-btn" disabled>ZAAKCEPTUJ</button>
+      <div class="emotion-option" data-type="bad">
+        <img src="${chmurkaBad}" alt="Źle" class="emotion-cloud mb-4" />
+        <button class="btn btn-emotion btn-emotion--bad">ŹLE</button>
+      </div>
+      <div class="emotion-option" data-type="depends">
+        <img src="${chmurkaDepends}" alt="Zależy od dnia" class="emotion-cloud mb-4" />
+        <button class="btn btn-emotion btn-emotion--depends">ZALEŻY OD DNIA</button>
+      </div>
     </div>
 
-    </div>
-    </div>
-
-    <div class="face-right">
-      <p class="standard-title-3">Czy jesteś w stanie rozpoznać smutek?</p>
-      <p id="text-desc">Każdy z nas inaczej okazuje emocje. Jedni pokazują smutek łzami, inni spuszczają wzrok albo przybierają poważną minę. A czasem ktoś się uśmiecha... nawet gdy jest mu smutno.</p>
-    </div>
+    <div id="emotion-desc" class="emotion-desc mt-4 d-none"></div>
   </div>
 `;
 
 export const logicFunc = (onSuccess) => {
-  const dropZones = document.querySelectorAll('.drop-zone');
-  const acceptBtn = document.getElementById('accept-btn');
-  const desc = document.getElementById('text-desc');
-
-  const state = {
-    eyes: null,
-    mouth: null,
-    brows: null,
+  const descriptions = {
+    good: {
+      text: `Super, że tak się czujesz! Może chcesz podzielić się, co sprawiło, że masz dziś dobry dzień? Dobrze jest zauważać, co nam służy - wtedy łatwiej to powtarzać!`,
+      class: 'label--good'
+    },
+    ok: {
+      text: `To zupełnie w porządku mieć taki dzień. Może coś małego poprawi Ci humor? Czasem pomaga rozmowa z kimś bliskim albo zrobienie czegoś, co lubisz.`,
+      class: 'label--ok'
+    },
+    bad: {
+      text: `Przykro mi, że tak się czujesz. Każdy ma czasem trudniejsze chwile. Pamiętaj, że możesz porozmawiać z kimś, komu ufasz - to naprawdę pomaga. A może chcesz spróbować czegoś, co zwykle Cię uspokaja lub rozwesela?`,
+      class: 'label--bad'
+    },
+    depends: {
+      text: `To bardzo trafne - każdy dzień może być inny. Warto zauważać, co sprawia, że czujesz się lepiej, a co Cię zasmuca. Dzięki temu łatwiej zadbać o siebie. Może chcesz opowiedzieć, co dziś wpłynęło na Twój nastrój?`,
+      class: 'label--depends'
+    }
   };
 
-  document.querySelectorAll('.drag-options img').forEach(img => {
-    img.addEventListener('dragstart', (e) => {
-      const group = img.closest('.option-group');
-      const type = group ? group.dataset.type : '';
-      e.dataTransfer.setData('src', img.src);
-      e.dataTransfer.setData('zone', type);
-      e.dataTransfer.setData('sad', img.dataset.sad || 'false');
-    });
-  });
+  const options = document.querySelectorAll('.emotion-option');
 
-  dropZones.forEach(zone => {
-    zone.addEventListener('dragover', (e) => {
-      e.preventDefault();
-    });
+  options.forEach(option => {
+    const type = option.dataset.type;
+    const cloud = option.querySelector('img');
+    const button = option.querySelector('button');
 
-    zone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      const src = e.dataTransfer.getData('src');
-      const zoneType = e.dataTransfer.getData('zone'); // z buttona
-      const dropTargetType = zone.dataset.zone; // np. "eyes"
-      const sad = e.dataTransfer.getData('sad') === 'true';
+    const selectOption = () => {
+      // Reset wszystkich
+      options.forEach(opt => {
+        opt.querySelector('img').classList.remove('active');
+        opt.style.opacity = '0.4';
+      });
 
-      // ❗ blokada: nie wrzucaj elementów w złą strefę
-      if (zoneType !== dropTargetType) {
-        zone.classList.add('shake-border');
-        setTimeout(() => zone.classList.remove('shake-border'), 500);
-        return;
-      }
+      // Aktywna chmurka
+      cloud.classList.add('active');
+      option.style.opacity = '1';
 
-      const img = document.createElement('img');
-      img.src = src;
-      img.classList.add('dropped');
-      zone.innerHTML = '';
-      zone.appendChild(img);
+      // Pokazujemy opis
+      const descBox = document.getElementById('emotion-desc');
+      descBox.className = 'emotion-desc mt-4'; // reset klas
+      descBox.classList.add(descriptions[type].class);
+      descBox.innerHTML = `<p>${descriptions[type].text}</p>`;
+      descBox.classList.remove('d-none');
 
-      state[zone.dataset.zone] = src;
+      onSuccess(); // aktywacja przycisku „Dalej”
+    };
 
-      if (Object.values(state).every(val => val)) {
-        acceptBtn.disabled = false;
-      }
-
-      if (zone.dataset.zone === 'eyes' && sad) {
-        desc.innerText = 'To, że ktoś nie płacze, nie znaczy, że nie jest mu trudno. Dlatego warto być dla siebie i innych wyrozumiałym.';
-      }
-    });
-  });
-
-  acceptBtn.addEventListener('click', () => {
-    acceptBtn.classList.add('btn-success');
-    onSuccess();
+    cloud.addEventListener('click', selectOption);
+    button.addEventListener('click', selectOption);
   });
 };
+

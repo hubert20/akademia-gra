@@ -1,5 +1,5 @@
-// src/js/views/view9.js
-import comicPanel from '../../assets/komiks/komiks-screen-8.jpg';
+// src/js/views/view22.js
+import comicPanel from '../../assets/komiks/komiks-screen-17.jpg';
 
 export const view = `
   <div class="comic-panel text-center">

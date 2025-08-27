@@ -1,5 +1,5 @@
 // src/js/views/view12.js
-import comicPanel from '../../assets/comic/comic-1.jpg'; // ścieżka do Twojej planszy
+import comicPanel from '../../assets/komiks/komiks-screen-11.jpg';
 
 export const view = `
   <div class="comic-panel text-center">

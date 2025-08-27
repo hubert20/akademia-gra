@@ -59,8 +59,8 @@ function updateNavigationButtons() {
 function renderView(index) {
   if (index === -1) {
     taskContainer.innerHTML = `
-      <div class="intro-screen text-center">
-        <img src="${introImage}" alt="Intro" style="max-width: 100%; height: auto; margin-bottom: 2rem;" />
+      <div class="intro-screen text-center d-flex flex-column justify-content-center h-100">
+        <img src="${introImage}" alt="Intro" class="align-self-center" style="max-width: 100%; height: auto; margin-bottom: 2rem;" />
       </div>
     `;
 
