@@ -25,6 +25,14 @@ export const view = `
 
     <div>
       <div class="drag-options">
+        <div class="option-group" data-type="brows">
+          <p class="mb-0">Wybierz brwi</p>
+          <div class="option-images p-3">
+          <img src="${brwiZle}" draggable="true" data-id="brwi-zle" />
+          <img src="${brwiSmutne}" draggable="true" data-id="brwi-smutne" />
+          <img src="${brwiWesole}" draggable="true" data-id="brwi-wesole" />
+          </div>
+        </div>
         <div class="option-group" data-type="eyes">
           <p class="mb-0">Wybierz oczy</p>
           <div class="option-images p-3">
@@ -40,14 +48,6 @@ export const view = `
           <img src="${ustaSmutne}" draggable="true" data-id="usta-smutne" />
           <img src="${ustaWesole}" draggable="true" data-id="usta-wesole" />
         </div>
-        </div>
-        <div class="option-group" data-type="brows">
-          <p class="mb-0">Wybierz brwi</p>
-          <div class="option-images p-3">
-          <img src="${brwiZle}" draggable="true" data-id="brwi-zle" />
-          <img src="${brwiSmutne}" draggable="true" data-id="brwi-smutne" />
-          <img src="${brwiWesole}" draggable="true" data-id="brwi-wesole" />
-          </div>
         </div>
       </div>
       <button class="btn btn-secondary mt-3" id="accept-btn" disabled>ZAAKCEPTUJ</button>

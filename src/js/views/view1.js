@@ -4,7 +4,7 @@ import chmurkaOk from '../../assets/chmurka-ok.jpg';
 import chmurkaBad from '../../assets/chmurka-bad.jpg';
 import chmurkaDepends from '../../assets/chmurka-depends.jpg';
 export const view = `
-  <div class="emotion-task text-center">
+  <div class="emotion-task text-center h-100 d-flex flex-column justify-content-center">
     <h2>Jak się czujesz w swojej klasie?</h2>
     <p class="text-muted mb-5">Wybierz klikając w chmurkę lub przycisk</p>
     <div class="emotions-wrapper d-flex justify-content-center flex-wrap gap-5">
