@@ -608,12 +608,12 @@ footer a {
   transform: translate(-50%, -50%);
   width: 40%;
   height: 40%;
-  border: 2px dashed #ccc;
+  border: 2px dashed rgba(255, 255, 255, 0.2);;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 1rem;
 }
 
