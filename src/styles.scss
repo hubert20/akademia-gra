@@ -419,6 +419,9 @@ footer a {
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 2px dashed rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
 
         img.dropped {
           max-height: 40px;
