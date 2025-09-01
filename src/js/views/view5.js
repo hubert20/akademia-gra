@@ -11,6 +11,7 @@ import brwiZle from '../../assets/task2/brwi-zle.png';
 import brwiWesole from '../../assets/task2/brwi-wesole.png';
 
 export const view = `
+<div class="task2">
   <div class="face-builder h-100">
     <div class="face-left p-4">
       <p class="standard-title-3 text-start">Przeciągaj elementy i dopasuj je tak, aby stworzyć postać,<br>która wygląda na <strong>smutną</strong>.</p>
@@ -61,6 +62,7 @@ export const view = `
       <p id="text-desc">Każdy z nas inaczej okazuje emocje. Jedni pokazują smutek łzami, inni spuszczają wzrok albo przybierają poważną minę. A czasem ktoś się uśmiecha... nawet gdy jest mu smutno.</p>
     </div>
   </div>
+</div>
 `;
 
 export const logicFunc = (onSuccess) => {

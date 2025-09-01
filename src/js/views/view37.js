@@ -22,20 +22,21 @@ const emotions = [
 export const view = `
 <div class="task-10">
   <div class="view37-container text-center">
-    <h2 class="mb-4">Zgadnij, co czuli bohaterowie?</h2>
-    <p>Wybierz jedną z postaci:</p>
-    <div class="characters d-flex justify-content-center gap-4 mb-4">
+    <div class="characters flex-column mb-4">
+    <h4 class="mb-4 text-start">Przypomnij sobie, co się wydarzyło w ich historii. Jakie emocje mogły im towarzyszyć?</h4>
+    <h3 class="text-start mb-4">Z którą z postaci najbardziej się utożsamiasz?</h3>
+      <div class="d-flex justify-content-center gap-5">
       ${characters.map(char => `
-        <img src="${char.img}" data-id="${char.id}" class="character" alt="${char.label}" style="cursor:pointer; max-width:120px">
+        <div><img src="${char.img}" data-id="${char.id}" class="character mx-3" alt="${char.label}" style="cursor:pointer;"><p class="text-center fw-bold">${char.label}</p></div>
       `).join('')}
+      </div>
     </div>
 
     <div id="backpack-section" class="d-none">
       <div id="drop-zone" class="drop-zone">
-        <img id="backpack-img" src="${plecakImg}" alt="Plecak" />
         <div class="backpack-character d-flex align-items-center justify-content-center">
           <img id="selected-head" src="" alt="Główka" />
-          <span id="selected-name"></span>
+          <span id="selected-name" class="d-block"></span>
         </div>
       </div>
 

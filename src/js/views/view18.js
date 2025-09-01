@@ -8,6 +8,7 @@ import bookImage from '../../assets/task7/ksiazka.png';
 import otherImage from '../../assets/task7/inny-sposob.png';
 
 export const view = `
+<div class="task5">
   <div class="view7-container text-center">
     <div id="intro-text" class="intro-text mb-4"></div>
     <button id="start-capsule" class="btn btn-primary mt-4">Przejdź dalej</button>
@@ -44,6 +45,7 @@ export const view = `
         <p>Inny sposób</p>
       </div>
     </div>
+   </div>
   </div>
 `;
 
