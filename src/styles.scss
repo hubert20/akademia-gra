@@ -513,6 +513,192 @@ footer a {
   height: 200px;
 }
 
+/* === Task 3: Termometr złości (view14) === */
+.task-thermo {
+
+  /* Karta z układem 2 kolumny (lewa interakcja | divider | prawa stała kolumna) */
+  .thermo-wrap {
+    display: grid;
+    grid-template-columns: 1fr 10px 360px;
+    gap: 24px;
+    align-items: start;
+    padding: 24px;
+  }
+
+  .thermo-left {
+    min-width: 0;
+  }
+
+  .thermo-divider {
+    width: 2px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, .15), rgba(0, 0, 0, 0));
+    height: 100%;
+    justify-self: center;
+  }
+
+  /* Prawa kolumna – zawsze widoczna */
+  .thermo-right {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    .speech {
+      background: #e7f2ff;
+      border-radius: 16px;
+      padding: 14px 16px;
+      line-height: 1.4;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .05);
+    }
+
+    .buddy {
+      width: 160px;
+      height: auto;
+      user-select: none;
+    }
+  }
+
+  /* Obszar grafiki termometru */
+  .thermo-area {
+    position: relative;
+    width: 220px;
+    /* szerokość obrazka PNG */
+    height: 420px;
+    /* wysokość obrazka PNG */
+    user-select: none;
+  }
+
+  .thermo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+  }
+
+  /* Tor (klik/drag) – dopasowany do kolorowego słupka w PNG */
+  .thermo-track {
+    position: absolute;
+    left: 106px;
+    top: 0;
+    width: 8px;
+    height: 338px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column-reverse;
+    border-radius: 12px;
+    background: #5b4635;
+
+    /* Ułóż dzieci od dołu do góry wizualnie (niebieski na dole) */
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  /* Segmenty toru – stałe wysokości z makiety */
+  .track-zone {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .track-red {
+    height: 86px;
+  }
+
+  .track-orange {
+    height: 86px;
+  }
+
+  .track-yellow {
+    height: 86px;
+  }
+
+  .track-blue {
+    height: 75px;
+  }
+
+  /* Uchwyt (trójkąt) – JS ustawia top, left jest wyrównany do toru */
+  .thermo-handle {
+    position: absolute;
+    left: 145px;
+    /* przy starcie JS nadpisze względem toru: track.offsetLeft - 14px */
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-right: 22px solid #2f2f2f;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .25));
+    cursor: grab;
+    transition: transform .05s ease;
+  }
+
+  .thermo-handle.dragging {
+    cursor: grabbing;
+    transform: scale(1.05);
+  }
+
+  /* Dymek z opisem przy suwaku */
+  .thermo-bubble {
+    position: absolute;
+    left: 190px;
+    min-width: 500px;
+    max-width: 620px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+    line-height: 1.35;
+
+    .bubble-inner {
+      font-size: 17px;
+      font-style: italic;
+      text-align: left;
+    }
+  }
+
+  /* Kolory dymka zgodnie ze strefą */
+  .zone-blue {
+    background: #e6f2ff;
+    border: 2px solid #6aa9ff;
+  }
+
+  .zone-yellow {
+    background: #fff8cc;
+    border: 2px solid #ffde69;
+  }
+
+  .zone-orange {
+    background: #ffe6c9;
+    border: 2px solid #ffb566;
+  }
+
+  .zone-red {
+    background: #ffe4e4;
+    border: 2px solid #ff6b6b;
+  }
+
+  /* RWD */
+  @media (max-width: 992px) {
+    .thermo-wrap {
+      grid-template-columns: 1fr;
+    }
+
+    .thermo-divider {
+      display: none;
+    }
+
+    .thermo-right .speech {
+      width: 100%;
+    }
+
+    .thermo-bubble {
+      position: static;
+      margin-top: 12px;
+    }
+  }
+}
+
+
 //task6
 .task-6 {
   .assertive-task {
