@@ -1,6 +1,7 @@
 import './styles.scss';
 import 'bootstrap';
 import { views, logics } from './js/views';
+import './cookie';
 
 const sideMenu = document.getElementById('sideMenu');
 const menuToggle = document.getElementById('menuToggle');

@@ -1,9 +1,9 @@
-// src/js/views/view39.js - Zadanie 11 - Kompas mocnych stron
-import comicPanel from '../../assets/komiks/komiks-screen-19.jpg';
+// src/js/views/view39.js
+import comicPanel from '../../assets/komiks/komiks-screen-30.jpg';
 
 export const view = `
-  <div class="comic-panel text-center d-flex flex-column justify-content-center h-100">
-    <h2 class="text-center">Zadanie 11?? - Kompas mocnych stron</h2>
+  <div class="comic-panel text-center">
+    <img src="${comicPanel}" alt="Komiks" class="img-fluid" style="max-width: 100%; height: auto;border-radius: 1rem;">
   </div>
 `;
 

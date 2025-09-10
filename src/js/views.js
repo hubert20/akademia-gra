@@ -39,6 +39,7 @@ import { view as view37, logicFunc as logic37 } from './views/view37.js';
 import { view as view38, logicFunc as logic38 } from './views/view38.js';
 import { view as view39, logicFunc as logic39 } from './views/view39.js';
 import { view as view40, logicFunc as logic40 } from './views/view40.js';
+import { view as view41, logicFunc as logic41 } from './views/view41.js';
 
-export const views = [view0, view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11, view12, view13, view14, view15, view16, view17, view18, view19, view20, view21, view22, view23, view24, view25, view26, view27, view28, view29, view30, view31, view32, view33, view34, view35, view36, view37, view38, view39, view40];
-export const logics = [logic0, logic1, logic2, logic3, logic4, logic5, logic6, logic7, logic8, logic9, logic10, logic11, logic12, logic13, logic14, logic15, logic16, logic17, logic18, logic19, logic20, logic21, logic22, logic23, logic24, logic25, logic26, logic27, logic28, logic29, logic30, logic31, logic32, logic33, logic34, logic35, logic36, logic37, logic38, logic39, logic40];
+export const views = [view0, view1, view2, view3, view4, view5, view6, view7, view8, view9, view10, view11, view12, view13, view14, view15, view16, view17, view18, view19, view20, view21, view22, view23, view24, view25, view26, view27, view28, view29, view30, view31, view32, view33, view34, view35, view36, view37, view38, view39, view40, view41];
+export const logics = [logic0, logic1, logic2, logic3, logic4, logic5, logic6, logic7, logic8, logic9, logic10, logic11, logic12, logic13, logic14, logic15, logic16, logic17, logic18, logic19, logic20, logic21, logic22, logic23, logic24, logic25, logic26, logic27, logic28, logic29, logic30, logic31, logic32, logic33, logic34, logic35, logic36, logic37, logic38, logic39, logic40, logic41];
