@@ -1,5 +1,9 @@
 // src/js/views/view31.js
 import kubaImg from '../../assets/taskfire/kuba.png';
+import emberImg from '../../assets/taskfire/fire.gif';
+
+const EMBERS = 12;
+const STATES = ['is-red', 'is-orange', 'is-yellow', 'is-green', 'is-blue'];
 
 export const view = `
 <div class="task-31 h-100">
@@ -7,49 +11,73 @@ export const view = `
     <div class="view31-left">
       <div class="boy-wrap">
         <img class="boy-img" src="${kubaImg}" alt="Kuba" />
+
+        <!-- DUŻY PŁOMIEŃ ZA POSTACIĄ -->
         <div class="firepit">
           <div class="fire is-red">
             <div class="flame"></div>
-            ${'<div class="spark"></div>'.repeat(12)}
           </div>
+        </div>
+
+        <!-- PIERŚCIEŃ Z 12 MAŁYMI OGNIKAMI (CSS układa po okręgu) -->
+        <div class="embers">
+          ${Array.from({ length: EMBERS })
+            .map(() => `<img class="ember" src="${emberImg}" alt="Ognik" />`)
+            .join('')}
         </div>
       </div>
     </div>
 
     <div class="view31-right text-center">
       <p class="lead">Przyciskaj przycisk,<br/>aby ostudzić termometr</p>
-      <button class="cool-btn"></button>
-      <!-- brak lokalnego "DALEJ" -->
+      <button class="cool-btn" aria-label="Ostudź"></button>
     </div>
   </div>
 </div>
 `;
 
 export const logicFunc = (onSuccess) => {
-  const fire = document.querySelector('.fire');
-  const coolBtn = document.querySelector('.cool-btn');
+  const scope    = document.querySelector('.task-31');
+  const fire     = scope.querySelector('.fire');
+  const coolBtn  = scope.querySelector('.cool-btn');
+  const embers   = Array.from(scope.querySelectorAll('.ember'));
 
-  // pulsuj, dopóki gracz nie kliknie pierwszy raz
   coolBtn.classList.add('pulse');
 
-  const states = ['is-red', 'is-orange', 'is-yellow', 'is-green', 'is-blue'];
-  let idx = 0;
-  let done = false;
+  let removed  = 0;
+  let stateIdx = 0;
+  let started  = false;
 
   function setState(i) {
-    states.forEach(cls => fire.classList.remove(cls));
-    fire.classList.add(states[i]);
+    STATES.forEach(c => fire.classList.remove(c));
+    fire.classList.add(STATES[i]);
   }
 
   coolBtn.addEventListener('click', () => {
-    idx = (idx + 1) % states.length;
-    setState(idx);
+    // stop gdy wszystko zgasło i kolor = niebieski
+    if (removed >= embers.length && stateIdx >= STATES.length - 1) return;
 
-    if (!done) {
-      done = true;
-      coolBtn.classList.remove('pulse'); // zatrzymaj pulsowanie
-      // odblokuj globalny "DALEJ" (Twoja nawigacja reaguje na onSuccess)
-      if (typeof onSuccess === 'function') onSuccess();
+    // gaś 1 ognik (po kolei)
+    if (removed < embers.length) {
+      embers[removed].classList.add('gone');
+      removed++;
+    }
+
+    // co 3 ogniki zmień kolor (max do niebieskiego)
+    if (removed % 3 === 0 && stateIdx < STATES.length - 1) {
+      stateIdx++;
+      setState(stateIdx);
+    }
+
+    if (!started) {
+      started = true;
+      coolBtn.classList.remove('pulse');
+      if (typeof onSuccess === 'function') onSuccess(); // globalny "DALEJ"
+    }
+
+    if (removed >= embers.length && stateIdx >= STATES.length - 1) {
+      coolBtn.disabled = true;
+      coolBtn.classList.add('done');
     }
   });
 };

@@ -11,7 +11,7 @@ import brwiZle from '../../assets/task2/brwi-zle.png';
 import brwiWesole from '../../assets/task2/brwi-wesole.png';
 
 export const view = `
-<div class="task2">
+<div class="task2 h-100">
   <div class="face-builder h-100">
     <div class="face-left p-4">
       <p class="standard-title-3 text-start">Przeciągaj elementy i dopasuj je tak, aby stworzyć postać,<br>która wygląda na <strong>smutną</strong>.</p>
@@ -69,6 +69,7 @@ export const logicFunc = (onSuccess) => {
   const dropZones = document.querySelectorAll('.drop-zone');
   const acceptBtn = document.getElementById('accept-btn');
   const desc = document.getElementById('text-desc');
+  const faceReady = document.querySelector('.face-image-wrapper');
 
   const state = {
     eyes: null,
@@ -124,6 +125,7 @@ export const logicFunc = (onSuccess) => {
   });
 
   acceptBtn.addEventListener('click', () => {
+    faceReady.classList.add('face-ready');
     acceptBtn.classList.add('btn-success');
     onSuccess();
   });
