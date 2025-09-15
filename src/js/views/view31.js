@@ -29,7 +29,7 @@ export const view = `
     </div>
 
     <div class="view31-right text-center">
-      <p class="lead">Przyciskaj przycisk,<br/>aby ostudzić termometr</p>
+      <p class="lead">Pomóż Alexowi ostudzić emocje. <br> Każde kliknięcie w przycisk <br> to większy spokój chłopca. <br> Do dzieła!</p>
       <button class="cool-btn" aria-label="Ostudź"></button>
     </div>
   </div>
