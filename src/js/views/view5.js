@@ -14,7 +14,8 @@ export const view = `
 <div class="task2 h-100">
   <div class="face-builder h-100">
     <div class="face-left p-4">
-      <p class="standard-title-3 text-start">Przeciągaj elementy i dopasuj je tak, aby stworzyć postać,<br>która wygląda na <strong>smutną</strong>.</p>
+    <h2>Czy jesteś w stanie rozpoznać smutek?</h2>
+      <p class="standard-title-3 text-center">Przeciągaj elementy i dopasuj je tak, aby stworzyć smutną twarz.</p>
 
     <div class="d-flex align-items-center justify-content-evenly">
       <div class="face-image-wrapper">
@@ -58,8 +59,8 @@ export const view = `
     </div>
 
     <div class="face-right">
-      <p class="standard-title-3">Czy jesteś w stanie rozpoznać smutek?</p>
-      <p id="text-desc">Każdy z nas inaczej okazuje emocje. Jedni pokazują smutek łzami, inni spuszczają wzrok albo przybierają poważną minę. A czasem ktoś się uśmiecha... nawet gdy jest mu smutno.</p>
+      <h3 class="standard-title-3">Jak rozpoznać smutek</h3>
+      <p id="text-desc">Każdy z nas inaczej okazuje emocje. Jedni pokazują smutek łzami, inni spuszczają wzrok albo robią poważną minę. A czasem ktoś się uśmiecha…, nawet gdy jest mu smutno.</p>
     </div>
   </div>
 </div>
@@ -127,6 +128,13 @@ export const logicFunc = (onSuccess) => {
   acceptBtn.addEventListener('click', () => {
     faceReady.classList.add('face-ready');
     acceptBtn.classList.add('btn-success');
+    const faceRightTitle = document.querySelector('.face-right h3');
+    const faceRightDesc = document.getElementById('text-desc');
+
+    if (faceRightTitle && faceRightDesc) {
+      faceRightTitle.innerText = 'Nie każdy okazuje smutek tak samo';
+      faceRightDesc.innerText = 'To, że ktoś nie płacze, nie znaczy, że nie jest mu trudno. Dlatego warto być dla siebie i innych wyrozumiałym';
+    }
     onSuccess();
   });
 };

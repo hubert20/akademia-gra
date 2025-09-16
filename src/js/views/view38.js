@@ -9,9 +9,9 @@ import baskaHead from '../../assets/task10/baska-head.png';
 import alexHead from '../../assets/task10/alex-head.png';
 
 const characters = [
-  { id: 'kuba', label: 'Kuba', img: kubaImg, head: kubaHead },
-  { id: 'baska', label: 'Baśka', img: baskaImg, head: baskaHead },
-  { id: 'alex', label: 'Alex', img: alexImg, head: alexHead },
+  { id: 'kuba', label: 'Kuby', img: kubaImg, head: kubaHead },
+  { id: 'baska', label: 'Baśki', img: baskaImg, head: baskaHead },
+  { id: 'alex', label: 'Alexa', img: alexImg, head: alexHead },
 ];
 
 const emotions = [

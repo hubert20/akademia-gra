@@ -6,7 +6,7 @@ import chmurkaDepends from '../../assets/chmurka-depends.jpg';
 export const view = `
   <div class="emotion-task text-center h-100 d-flex flex-column justify-content-center">
     <h2>Jak się czujesz w swojej klasie?</h2>
-    <p class="text-muted mb-5">Wybierz klikając w chmurkę lub przycisk</p>
+    <p class="text-muted mb-5">Kliknij w chmurkę, która pokazuje Twój nastrój ​</p>
     <div class="emotions-wrapper d-flex justify-content-center flex-wrap gap-5">
       <div class="emotion-option" data-type="good">
         <img src="${chmurkaGood}" alt="Spokojnie" class="emotion-cloud mb-4" />
