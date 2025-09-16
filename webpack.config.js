@@ -23,8 +23,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,   // bo poniżej jest sass-loader
-              esModule: false     // <<< kluczowe, usuwa problem z URL_REPLACEMENT
+              importLoaders: 1,
+              esModule: false
             }
           },
           'sass-loader'
@@ -39,6 +39,11 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: 'asset/resource',
         generator: { filename: 'assets/[name][hash][ext][query]' }
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: { filename: 'assets/fonts/[name][ext]' }
       }
     ]
   },
