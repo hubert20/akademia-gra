@@ -128,6 +128,7 @@ export const logicFunc = (onSuccess) => {
   acceptBtn.addEventListener('click', () => {
     faceReady.classList.add('face-ready');
     acceptBtn.classList.add('btn-success');
+    acceptBtn.classList.remove('btn-ready');
     const faceRightTitle = document.querySelector('.face-right h3');
     const faceRightDesc = document.getElementById('text-desc');
 

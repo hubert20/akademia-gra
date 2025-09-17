@@ -21,6 +21,10 @@ h6 {
 $red: #e53939;
 $blue-instr: #00bfff;
 
+.wildwords-font {
+  font-family: "Wildwords", Arial, sans-serif;
+}
+
 .blue-instruct {
   color: $blue-instr;
   font-size: 22px;
@@ -437,6 +441,31 @@ footer a {
       border-radius: 1rem;
       font-size: 1rem;
       line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .btn-ready {
+      position: relative;
+      z-index: 1;
+      // overflow: hidden;
+    }
+
+    /* pseudo-element pulsujący */
+    .btn-ready::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: inherit;
+      background: rgba(108, 117, 125, 0.5);
+      /* kolor dopasowany do btn-secondary */
+      z-index: -1;
+      animation: pulse 1.5s infinite;
+      opacity: 0;
     }
 
     .face-image-wrapper {
@@ -1705,5 +1734,23 @@ footer a {
   100% {
     box-shadow: 0 0 0 0 rgba(255, 60, 60, 0);
     transform: scale(1);
+  }
+}
+
+/* animacja pulsowania */
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+
+  70% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
   }
 }

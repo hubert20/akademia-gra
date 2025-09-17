@@ -17,7 +17,7 @@ const prevNav = document.getElementById('prevBtnWrapper');
 let currentView = -1; // -1 to intro
 let isTaskCompleted = false;
 
-import introImage from './assets/przygodnik.jpg';
+import introImage from './assets/start/start-bg.png';
 
 // MENU toggle
 menuToggle.addEventListener('click', () => {
@@ -61,8 +61,17 @@ function renderView(index) {
   if (index === -1) {
     taskContainer.innerHTML = `
       <div class="intro-screen text-center d-flex flex-column justify-content-center h-100">
-        <img src="${introImage}" alt="Intro" class="align-self-center" style="max-width: 100%; height: auto; margin-bottom: 2rem;" />
-      </div>
+    <div class="row z-1">
+        <div class="intro-screen--enter col-8 offset-5">
+            <h2 class="text-start">Przygodnik</h2>
+            <h4 class="text-start">Komiks, który pozwala uwierzyć w siebie</h4>
+            <p class="text-start fst-italic">Masz w sobie więcej, niż myślisz. <br> Z duszkiem na ramieniu i odwagą w
+                kieszeni, <br>czytaj, graj i odkrywaj, jak fajnie jest być sobą.</p>
+        </div>
+    </div>
+    <img src="${introImage}" alt="Intro" class="align-self-center intro-screen--image"
+        style="max-width: 100%; height: auto;position: absolute;" />
+    </div>
     `;
 
     updateNavigationButtons();
