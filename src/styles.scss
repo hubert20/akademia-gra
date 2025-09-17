@@ -3,17 +3,44 @@
 @font-face {
   font-family: "Wildwords";
   src: url("./assets/fonts/wildwords.woff2") format("woff2"),
-       url("./assets/fonts/wildwords.woff") format("woff");
+    url("./assets/fonts/wildwords.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Wildwords", Arial, sans-serif;
 }
 
 $red: #e53939;
+$blue-instr: #00bfff;
+
+.blue-instruct {
+  color: $blue-instr;
+  font-size: 22px;
+}
+
+.left-double-space {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 12px;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    content: '';
+  }
+}
+
 
 body {
   background-color: #fff;
@@ -405,7 +432,7 @@ footer a {
 
     .face-right {
       flex: 1 1 35%;
-      background: linear-gradient(to bottom right, #d7f0e5, #c4e0f3);
+      // background: linear-gradient(to bottom right, #d7f0e5, #c4e0f3);
       padding: 2rem;
       border-radius: 1rem;
       font-size: 1rem;

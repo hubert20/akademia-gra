@@ -6,7 +6,7 @@ import chmurkaDepends from '../../assets/chmurka-depends.jpg';
 export const view = `
   <div class="emotion-task text-center h-100 d-flex flex-column justify-content-center">
     <h2>Jak się czujesz w swojej klasie?</h2>
-    <p class="text-muted mb-5">Kliknij w chmurkę, która pokazuje Twój nastrój ​</p>
+    <p class="blue-instruct mb-5">Kliknij w chmurkę, która pokazuje Twój nastrój ​</p>
     <div class="emotions-wrapper d-flex justify-content-center flex-wrap gap-5">
       <div class="emotion-option" data-type="good">
         <img src="${chmurkaGood}" alt="Spokojnie" class="emotion-cloud mb-4" />
@@ -33,19 +33,19 @@ export const view = `
 export const logicFunc = (onSuccess) => {
   const descriptions = {
     good: {
-      text: `Super, że tak się czujesz! Może chcesz podzielić się, co sprawiło, że masz dziś dobry dzień? Dobrze jest zauważać, co nam służy - wtedy łatwiej to powtarzać!`,
+      text: `Super, że tak się czujesz! Dobrze jest zauważać, co nam służy - wtedy łatwiej to powtarzać!`,
       class: 'label--good'
     },
     ok: {
-      text: `To zupełnie w porządku mieć taki dzień. Może coś małego poprawi Ci humor? Czasem pomaga rozmowa z kimś bliskim albo zrobienie czegoś, co lubisz.`,
+      text: `To zupełnie w porządku mieć taki dzień. W poprawie humoru czasem pomaga rozmowa z kimś bliskim albo zrobienie czegoś, co lubisz. `,
       class: 'label--ok'
     },
     bad: {
-      text: `Przykro mi, że tak się czujesz. Każdy ma czasem trudniejsze chwile. Pamiętaj, że możesz porozmawiać z kimś, komu ufasz - to naprawdę pomaga. A może chcesz spróbować czegoś, co zwykle Cię uspokaja lub rozwesela?`,
+      text: `Przykro mi, że tak się czujesz. Każdy ma czasem trudniejsze chwile. Pamiętaj, że możesz porozmawiać z kimś, komu ufasz. A może chcesz spróbować czegoś, co zwykle Cię uspokaja lub rozwesela?`,
       class: 'label--bad'
     },
     depends: {
-      text: `To bardzo trafne - każdy dzień może być inny. Warto zauważać, co sprawia, że czujesz się lepiej, a co Cię zasmuca. Dzięki temu łatwiej zadbać o siebie. Może chcesz opowiedzieć, co dziś wpłynęło na Twój nastrój?`,
+      text: `To bardzo trafne - każdy dzień może być inny. Warto zauważać, co sprawia, że czujesz się lepiej, a co Cię zasmuca. Dzięki temu łatwiej zadbać o siebie. Może chcesz opowiedzieć komuś zaufanemu, co dziś wpłynęło na Twój nastrój?`,
       class: 'label--depends'
     }
   };

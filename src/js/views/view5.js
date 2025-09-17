@@ -14,9 +14,8 @@ export const view = `
 <div class="task2 h-100">
   <div class="face-builder h-100">
     <div class="face-left p-4">
-    <h2>Czy jesteś w stanie rozpoznać smutek?</h2>
-      <p class="standard-title-3 text-center">Przeciągaj elementy i dopasuj je tak, aby stworzyć smutną twarz.</p>
-
+    <h2>Czy jesteś w stanie <br> rozpoznać smutek?</h2>
+    <p class="blue-instruct text-center">Przeciągaj elementy i dopasuj je tak, aby stworzyć smutną twarz.</p>
     <div class="d-flex align-items-center justify-content-evenly">
       <div class="face-image-wrapper">
         <img src="${twarz}" alt="Twarz" class="face-base">
@@ -58,7 +57,7 @@ export const view = `
     </div>
     </div>
 
-    <div class="face-right">
+    <div class="face-right left-double-space">
       <h3 class="standard-title-3">Jak rozpoznać smutek</h3>
       <p id="text-desc">Każdy z nas inaczej okazuje emocje. Jedni pokazują smutek łzami, inni spuszczają wzrok albo robią poważną minę. A czasem ktoś się uśmiecha…, nawet gdy jest mu smutno.</p>
     </div>
@@ -100,7 +99,7 @@ export const logicFunc = (onSuccess) => {
       const dropTargetType = zone.dataset.zone; // np. "eyes"
       const sad = e.dataTransfer.getData('sad') === 'true';
 
-      // ❗ blokada: nie wrzucaj elementów w złą strefę
+      // blokada: nie wrzucaj elementów w złą strefę
       if (zoneType !== dropTargetType) {
         zone.classList.add('shake-border');
         setTimeout(() => zone.classList.remove('shake-border'), 500);
@@ -117,6 +116,7 @@ export const logicFunc = (onSuccess) => {
 
       if (Object.values(state).every(val => val)) {
         acceptBtn.disabled = false;
+        acceptBtn.classList.add('btn-ready');
       }
 
       if (zone.dataset.zone === 'eyes' && sad) {
