@@ -1,49 +1,23 @@
 // view14.js — Zadanie 3: Sprawdź swoją temperaturę złości
-
-// jeśli chcesz użyć obrazka termometru z assets:
-import thermoImg from '../../assets/task3/thermometer.png'; // podmień ścieżkę jeśli inna
-import buddyImg from '../../assets/task8/ognik.png';          // ten sam ognik co wcześniej
-
-const ZONES = [
-  {
-    id: 'blue',
-    label: 'Niebieski',
-    colorClass: 'zone-blue',
-    text: 'Ta sytuacja trochę mnie zdenerwowała, ale i tak jest w porządku. To nie było miłe, ale jestem w stanie poradzić sobie z tą sytuacją. Czuję lekkie napięcie, ale jeśli wezmę kilka głębokich oddechów – powinno być lepiej.',
-  },
-  {
-    id: 'yellow',
-    label: 'Żółty',
-    colorClass: 'zone-yellow',
-    text: 'Zaczynam się naprawdę złościć. Mam ochotę powiedzieć to głośno. To nie jest przyjemne uczucie. Jestem w stanie je zauważyć i skontrolować – robiąc dla siebie coś miłego, słuchając spokojnej muzyki czy idąc na spacer.',
-  },
-  {
-    id: 'orange',
-    label: 'Pomarańczowy',
-    colorClass: 'zone-orange',
-    text: 'Jestem bardzo zły/zła! Chce mi się krzyczeć, płakać. Czuję, że zaraz wybuchnę. Nie wiem, jak to powstrzymać – jeśli zaraz tego nie zrobię, to może skończyć się nieprzyjemnie. Potrzebuję pomocy kogoś dorosłego.',
-  },
-  {
-    id: 'red',
-    label: 'Czerwony',
-    colorClass: 'zone-red',
-    text: 'Złość przejęła nade mną kontrolę. Robię rzeczy, których już nie kontroluję. Krzyczę, płaczę, rzucam przedmiotami – a wcale nie chcę tego robić. To złość kieruje moim zachowaniem. Ktoś musi mi pomóc, by zadbać o bezpieczeństwo – moje i innych.',
-  },
-];
+import thermoImg from '../../assets/task3/thermometer.png';
+import thermoSlider from '../../assets/task3/suwak.png';
 
 export const view = `
 <div class="task-thermo h-100 d-flex flex-column justify-content-center">
-  <div class="thermo-wrap">
+  <div class="thermo-wrap h-100">
     <!-- LEWA -->
-    <div class="thermo-left">
-      <p class="mb-1"><em>Wyobraź sobie, że koleżanka wylała Ci na plecak sok pomidorowy.</em><br>
-      <strong>Jak bardzo by Cię to zezłościło?</strong></p>
-      <p class="text-muted">Przesuń suwak na Termometrze złości, aby pokazać, jak silna byłaby Twoja złość w tej sytuacji.</p>
+    <div class="thermo-left p-4">
+      <h2 class="text-start">TERMOMETR ZŁOŚCI</h2>
+      <p class="blue-instruct text-start mb-5">
+        Wyobraź sobie, że koleżanka wylała na Twój plecak sok pomidorowy.
+        Jak bardzo by Cię to zezłościło?
+      </p>
 
       <div class="thermo-area">
         <!-- obraz tła termometru -->
         <img class="thermo-image" src="${thermoImg}" alt="Termometr złości" />
-        <!-- pionowy tor do obliczeń pozycji (niewidoczny, ale klikalny) -->
+
+        <!-- pionowy tor do obliczeń pozycji -->
         <div class="thermo-track" aria-hidden="true">
           <div class="track-zone track-blue"></div>
           <div class="track-zone track-yellow"></div>
@@ -51,27 +25,41 @@ export const view = `
           <div class="track-zone track-red"></div>
         </div>
 
-        <!-- uchwyt/suwak (trójkąt) -->
-        <div class="thermo-handle" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"></div>
+        <!-- uchwyt/suwak (obrazek) -->
+        <div class="thermo-handle" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+          <img src="${thermoSlider}" alt="Suwak termometru złości" />
+        </div>
 
         <!-- dymek z tekstem przy suwaku -->
         <div class="thermo-bubble d-none">
           <div class="bubble-inner"></div>
         </div>
+
+        <!-- KRÓTKA INSTRUKCJA NA BIAŁYM TLE (obok termometru) -->
+        <div class="thermo-note text-start p-4">
+          <p>
+            Przesuń suwak na <strong class="wildwords-font">TERMOMETRZE ZŁOŚCI</strong>, aby pokazać,
+            jak silna byłaby Twoja złość w tej sytuacji.
+          </p>
+          <p class="mb-0">
+            Masz do wyboru różne poziomy — od
+            <span class="instr-blue">lekkiej złości</span> po
+            <span class="instr-red">wielką wściekłość</span>.
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- DIVIDER -->
-    <div class="thermo-divider" aria-hidden="true"></div>
-
-    <!-- PRAWA (zawsze widoczna) -->
-    <div class="thermo-right">
+    <!-- PRAWA (bez zmian) -->
+    <div class="thermo-right left-double-space">
       <div class="speech">
-        <strong>Wprowadzenie:</strong><br>
-        „Czuć złość to coś normalnego. Każdy może poczuć ją inaczej.
-        Ważne, co z tą złością zrobimy i jak ją wyrazimy – żeby nie skrzywdzić siebie ani innych”.
+        <h4>WPROWADZENIE</h4>
+        <p>
+          Każdy z nas czasem czuje złość. Czasem małą - jak iskierka,
+          a czasem ogromną - jak wulkan. Złość to ważna emocja,
+          która pokazuje, że coś nam się nie podoba albo że jest dla nas trudne.
+        </p>
       </div>
-      <img class="buddy" src="${buddyImg}" alt="Postać" />
     </div>
   </div>
 </div>
@@ -83,19 +71,14 @@ export const logicFunc = (onSuccess) => {
   const bubble = document.querySelector('.thermo-bubble');
   const bubbleInner = bubble.querySelector('.bubble-inner');
 
-  // Wysokości segmentów (px) – dokładnie jak na makiecie
-  const H_RED = 86;
-  const H_ORANGE = 86;
-  const H_YELLOW = 86;
-  const H_BLUE = 75;
+  // Wysokości segmentów (px) – jak na makiecie
+  const H_RED = 86, H_ORANGE = 86, H_YELLOW = 86, H_BLUE = 75;
   const TRACK_H = H_RED + H_ORANGE + H_YELLOW + H_BLUE; // 333
 
   const bounds = () => track.getBoundingClientRect();
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   let unlocked = false;
 
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-
-  // Zwraca strefę na podstawie Y liczonego od góry toru (px)
   const zoneFromY = (yFromTop) => {
     if (yFromTop < H_RED) return 'red';
     if (yFromTop < H_RED + H_ORANGE) return 'orange';
@@ -103,72 +86,85 @@ export const logicFunc = (onSuccess) => {
     return 'blue';
   };
 
+  // Pomiar wysokości uchwytu (obrazka), by pozycjonować środkiem
+  let HANDLE_H = 20;
+  const measureHandle = () => {
+    const r = handle.getBoundingClientRect();
+    HANDLE_H = r.height || 20;
+  };
+  measureHandle();
+  window.addEventListener('load', measureHandle);
+  window.addEventListener('resize', measureHandle);
+
+  const getCurrentY = () => {
+    const top = parseFloat(handle.style.top || '0');
+    return top + (HANDLE_H / 2);
+  };
+
   const setHandleAt = (clientY) => {
     const b = bounds();
-    // Y w obrębie toru [0..TRACK_H]
-    const y = clamp(clientY - b.top, 0, TRACK_H);
+    const y = clamp(clientY - b.top, 0, TRACK_H);               // 0..333
+    handle.style.top = `${y - (HANDLE_H / 2)}px`;                // środek obrazka
 
-    // Uchwyt (ma ~20px wysokości – pozycjonujemy środkiem)
-    handle.style.top = `${y - 10}px`;
-
-    // Strefa
     const z = zoneFromY(y);
-    bubble.classList.remove('zone-blue', 'zone-yellow', 'zone-orange', 'zone-red');
-    bubble.classList.add(`zone-${z}`);
-
-    // Tekst strefy
-    const zoneObj = {
+    bubble.className = `thermo-bubble zone-${z}`;
+    const txt = {
       blue:   'Ta sytuacja trochę mnie zdenerwowała, ale i tak jest w porządku. To nie było miłe, ale jestem w stanie poradzić sobie z tą sytuacją. Czuję lekkie napięcie, ale jeśli wezmę kilka głębokich oddechów – powinno być lepiej.',
       yellow: 'Zaczynam się naprawdę złościć. Mam ochotę powiedzieć to głośno. To nie jest przyjemne uczucie. Jestem w stanie je zauważyć i skontrolować – robiąc dla siebie coś miłego, słuchając spokojnej muzyki czy idąc na spacer.',
       orange: 'Jestem bardzo zły/zła! Chce mi się krzyczeć, płakać. Czuję, że zaraz wybuchnę. Nie wiem, jak to powstrzymać – jeśli zaraz tego nie zrobię, to może skończyć się nieprzyjemnie. Potrzebuję pomocy kogoś dorosłego.',
       red:    'Złość przejęła nade mną kontrolę. Robię rzeczy, których już nie kontroluję. Krzyczę, płaczę, rzucam przedmiotami – a wcale nie chcę tego robić. To złość kieruje moim zachowaniem. Ktoś musi mi pomóc, by zadbać o bezpieczeństwo – moje i innych.',
     }[z];
 
-    bubbleInner.textContent = zoneObj;
+    bubbleInner.textContent = txt;
     bubble.style.top = `${y - 28}px`;
     bubble.classList.remove('d-none');
 
-    if (!unlocked) {
-      unlocked = true;
-      onSuccess(); // odblokuj "DALEJ" po pierwszym trafieniu w strefę
-    }
+    if (!unlocked) { unlocked = true; onSuccess(); }
   };
 
-  // Drag: mouse/touch
+  // Drag z offsetem (brak "spadu")
   let dragging = false;
+  let grabOffset = 0;
+  let dragMode = 'track';
 
-  const start = (e) => {
-    dragging = true;
+  const startOnHandle = (e) => {
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    setHandleAt(clientY);
+    const b = bounds();
+    dragMode = 'handle';
+    dragging = true;
+    grabOffset = clientY - (b.top + getCurrentY()); // chwyt z przesunięciem
     e.preventDefault();
+  };
+
+  const startOnTrack = (e) => {
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    dragMode = 'track';
+    dragging = true;
+    setHandleAt(clientY); // kliknięcie w tor = przeskok
   };
 
   const move = (e) => {
     if (!dragging) return;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    setHandleAt(clientY);
+    const targetY = (dragMode === 'handle') ? (clientY - grabOffset) : clientY;
+    setHandleAt(targetY);
   };
 
   const end = () => { dragging = false; };
 
   // Zdarzenia
-  handle.addEventListener('mousedown', start);
+  handle.addEventListener('mousedown', startOnHandle);
   document.addEventListener('mousemove', move);
   document.addEventListener('mouseup', end);
 
-  handle.addEventListener('touchstart', start, { passive: false });
+  handle.addEventListener('touchstart', startOnHandle, { passive: false });
   document.addEventListener('touchmove', move, { passive: false });
   document.addEventListener('touchend', end);
 
-  // Klik na torze – przeskok w miejsce kliknięcia
-  track.addEventListener('mousedown', (e) => setHandleAt(e.clientY));
-  track.addEventListener('touchstart', (e) => setHandleAt(e.touches[0].clientY), { passive: true });
+  track.addEventListener('mousedown', startOnTrack);
+  track.addEventListener('touchstart', startOnTrack, { passive: true });
 
-  // Start: strzałka NAD termometrem (powyżej czerwonego), bąbel ukryty
-  const b0 = bounds();
-  // handle.style.left = `${track.offsetLeft - 14}px`; // wyrównanie czubka trójkąta do rurki
-  handle.style.top = `-${20}px`;                     // 🔺 nad górą toru
+  // Pozycja startowa: suwak na -60px, bąbel ukryty
+  handle.style.top = `-${60}px`;
   bubble.classList.add('d-none');
 };
-
