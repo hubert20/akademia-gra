@@ -340,6 +340,28 @@ footer a {
   }
 }
 
+
+/* =========================================
+   All tasks
+   ========================================= */
+
+// Style parts of tasks
+.left-sml-side-task {
+  flex: 1 1 35%;
+}
+
+.right-big-side-task {
+  flex: 1 1 55%;
+}
+
+.left-big-side-task {
+  flex: 1 1 55%;
+}
+
+.right-sml-side-task {
+  flex: 1 1 35%;
+}
+
 // Task 1
 .emotion-option {
   cursor: pointer;
@@ -437,7 +459,9 @@ footer a {
     .face-right {
       flex: 1 1 35%;
       // background: linear-gradient(to bottom right, #d7f0e5, #c4e0f3);
-      padding: 2rem;
+      background: url('./assets/task2/bg-face-desc.png') no-repeat center center;
+      padding: 3rem;
+      background-size: 90%;
       border-radius: 1rem;
       font-size: 1rem;
       line-height: 1.5;
@@ -493,28 +517,29 @@ footer a {
         border-radius: 25px;
 
         img.dropped {
-          max-height: 40px;
+          //max-height: 40px;
           pointer-events: none;
         }
       }
 
       .eyes-drop {
-        top: 150px;
+        top: 135px;
       }
 
       .mouth-drop {
-        top: 185px;
+        top: 175px;
       }
 
       .brows-drop {
         top: 115px;
+        height: 20px;
       }
     }
 
     .drag-options {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: .5rem;
 
       .option-group {
         display: flex;
@@ -527,7 +552,7 @@ footer a {
         }
 
         img {
-          width: 60px;
+          //width: 60px;
           margin-right: 10px;
           cursor: grab;
 
@@ -552,9 +577,13 @@ footer a {
 }
 
 .option-images {
-  border-radius: 12px;
-  background-color: #EEDCD6;
-  border: 2px solid #6F2922;
+  background: url('./assets/task2/bg-option-images.png') no-repeat center center;
+  background-size: 100%;
+  width: 402px;
+  height: 89px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .drop-zone {
@@ -788,20 +817,15 @@ footer a {
   }
 }
 
-
-
 //task6
 .task-6 {
-  .assertive-task {
-    padding: 2rem 0;
-  }
-
-  .question-box {
-    //background-color: #fefef7;
-    border-radius: 1rem;
-    padding: 2rem;
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  .feedback-wrap {
     background: url('./assets/task6/dymek-main.png') center/100% no-repeat;
+    background-size: cover;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .options-wrapper .option-btn {

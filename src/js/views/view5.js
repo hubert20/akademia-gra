@@ -1,5 +1,5 @@
 // src/js/views/view5.js - Zadanie 2 - Jak rozpoznać smutek? Przeciągaj elementy i dopasuj je tak, aby stworzyć postać, która wygląda na smutną.
-import twarz from '../../assets/task2/twarz.png';
+import twarz from '../../assets/task2/twarz-new.png';
 import oczySmutne from '../../assets/task2/oczy-smutne.png';
 import oczyZle from '../../assets/task2/oczy-zle.png';
 import oczyWesole from '../../assets/task2/oczy-wesole.png';
