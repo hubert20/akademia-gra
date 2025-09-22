@@ -165,6 +165,6 @@ export const logicFunc = (onSuccess) => {
   track.addEventListener('touchstart', startOnTrack, { passive: true });
 
   // Pozycja startowa: suwak na -60px, bąbel ukryty
-  handle.style.top = `-${60}px`;
+  handle.style.top = `-${30}px`;
   bubble.classList.add('d-none');
 };

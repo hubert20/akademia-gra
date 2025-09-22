@@ -621,8 +621,6 @@ footer a {
 
   .thermo-left {
     flex: 1 1 55%;
-    background: linear-gradient(to top, #7FD3ED, #A9B758);
-    border-radius: 1rem 0 0 1rem;
   }
 
   /* Prawa kolumna */
@@ -703,7 +701,7 @@ footer a {
     left: 91px;
     /* dopasowane do Twojej rury (track: 106px, szer. uchwytu ~38px) */
     width: 38px;
-    height: 61px;
+    height: 26px;
     cursor: grab;
     z-index: 2;
     /* ponad notką i tłem */
@@ -730,11 +728,15 @@ footer a {
     left: 190px;
     min-width: 500px;
     max-width: 620px;
-    padding: 10px 12px;
+    padding: 15px 21px;
     border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+    // box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
     line-height: 1.35;
     z-index: 3;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, .1));
+    height: 150px;
+    display: flex;
+    align-items: center;
     /* ponad notką */
 
     .bubble-inner {
@@ -751,18 +753,21 @@ footer a {
   }
 
   .zone-yellow {
-    background: #fff8cc;
-    border: 2px solid #ffde69;
+    // background: #fff8cc;
+    // border: 2px solid #ffde69;
+        background: url('./assets/task3/zlosc.png') center/100% no-repeat;
   }
 
   .zone-orange {
-    background: #ffe6c9;
-    border: 2px solid #ffb566;
+    // background: #ffe6c9;
+    // border: 2px solid #ffb566;
+    background: url('./assets/task3/duza-zlosc.png') center/100% no-repeat;
   }
 
   .zone-red {
-    background: #ffe4e4;
-    border: 2px solid #ff6b6b;
+    // background: #ffe4e4;
+    // border: 2px solid #ff6b6b;
+    background: url('./assets/task3/bardzo-duza-zlosc.png') center/100% no-repeat;
   }
 
   /* --- NOWOŚĆ: krótka notka obok termometru --- */
